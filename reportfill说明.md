@@ -77,7 +77,7 @@
   <pre><code>
     @Autowired
     ReportFillService reportFillService;
-    reportFillService.updateCompanyRportAndCompanyPeriodReportStatus(companyReport);
+    reportFillService.updateCompanyRportAndPeriodStatus(companyReport);
   </code></pre>
    注：传的companyReport实体类中必须包括companyReportId和status以及companyPeriodReportStatusId<br>
         返回值是Boolean类型，true更新成功，false更新失败
