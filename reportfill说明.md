@@ -4,7 +4,7 @@
   2、companyPeriodReportStatusId： CompanyPeriodReportStatus表的id，同时也是CompanyReport表的字段；<br>
   3、action： 要进行的操作是什么，包括edit编辑，view查看，添加和修改同属于edit操作；<br>
   4、isAccu： 是否累计，包括 0 否， 1 是。<br>
-# 获取下一级操作级别的方法（位于report项目想的common.conreoller里）
+# 获取下一级操作级别的方法（位于report项目的common.conreoller里）
   1、保存草稿<br>
    <pre><code>
     @RequestMapping(value = "/saveDraft/getNextStatus/{companyReportId}", method = RequestMethod.GET)
