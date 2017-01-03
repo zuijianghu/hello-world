@@ -24,7 +24,7 @@
     };
     var setJqueryMap = function () {
         jqueryMap.$blockTarget = $('body');
-        jqueryMap.$companyContext = jqueryMap.$blockTarget.find('#form_baseinforeport' + configMap.action);
+        jqueryMap.$companyContext = jqueryMap.$blockTarget.find('#companyContext' + configMap.action);
     };  
     var demo = function () {  
         jqueryMap.$companyContext.find('#id').on('click', function(){  
