@@ -96,6 +96,26 @@ Centos7.2下部署项目
 >set names utf8;  
 
 输入数据库所在路径 
->source /usr/database.sql;
+>source /usr/database.sql;  
+
+  
+安装redis 
+----------
+
+1. 安装GCC和Make，在编译时会用到 
+>yum install gcc make 
+
+2. 从官网下载redis安装包  
+>curl http://download.redis.io/releases/redis-3.0.4.tar.gz -o redis-3.0.4.tar.gz  
+
+3. 解压缩  
+>tar zxvf redis-3.0.4.tar.gz  
+
+4. 进入解压后的redis目录，进行编译 
+>cd redis-3.0.4   
+>make   
+
+
+
 
 
