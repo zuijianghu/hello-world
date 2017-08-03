@@ -16,7 +16,7 @@ Centos7.2下部署项目
 
 此时使用以下语句逐一卸载  
 >rpm -e --nodeps tzdata-java-2014i-1.el7.noarch 
-> rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64 
+>rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64 
 
 2. 安装新的jdk1.8 
 
@@ -41,6 +41,61 @@ Centos7.2下部署项目
 5. 查看新安装的jdk版本  
 >java -version
 
-安装redis 
-----------
+
+安装mariadb 
+----------  
+1. 查看是否安装过mariadb  
+>rpm -qa | grep maria*  
+
+如果出现以下语句  
+>MariaDB-server-5.5.49-1.el7.centos.x86_64  
+>MariaDB-common-5.5.49-1.el7.centos.x86_64  
+>MariaDB-client-5.5.49-1.el7.centos.x86_64  
+
+说明安装过mariadb，执行以下语句，卸载mariadb数据库  
+>yum -y remove mari*  
+
+执行以下语句，删除数据库文件  
+>rm -rf /var/lib/MySQL/*  
+
+2. 安装新的mariadb 
+>yum -y install mariadb mariadb-server  
+
+3. 启动mariadb服务 
+>systemctl start mariadb  
+
+4. 设置系统开启自启动  
+>systemctl enable mariadb 
+
+5. 修改配置文件 
+>vim /etc/my.conf 
+
+在下述语句后面添加配置 
+>[mysqld]   
+>datadir=/var/lib/mysql   
+>socket=/var/lib/mysql/mysql.sock   
+
+设置字符集为utf8  
+>character-set-server=utf8  
+>collation-server=utf8_bin  
+
+设置sql_model 
+>sql_mode="STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION"  
+
+6. mariadb第一次启动时，初始root密码为空，根据提示或者执行以下语句修改密码   
+>mysqladmin  -uroot -p  password '新密码'  
+
+7. 导入sql文件  
+进入mariadb，新建与文件名相同的数据库  
+>create database Student; 
+
+选中新建的数据库  
+> use Student;  
+
+设置默认编码  
+>set names utf8;  
+
+输入数据库所在路径 
+>source /usr/database.sql;
+
 
