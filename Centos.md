@@ -115,6 +115,38 @@ Centos7.2下部署项目
 >cd redis-3.0.4   
 >make   
 
+5. 编译完成之后，在src目录下有2个重要程序生成，一个是redis-server，另一个是redis-cli；接着进入src目录，执行make install，这时会把这些可执行程序拷贝到/usr/local/bin目录下，由于/usr/local/bin是在系统的环境变量$PATH下定义的，因此终端在任意位置就可以执行redis-server和redis-cli了 
+>cd src/  
+>make install 
+
+6. 把redis目录下的redis.conf文件拷贝到/etc/redis/6379.conf 
+>cd /etc  
+>mkdir redis  
+>cp /usr/redis/redis.conf /etc/redis/6379.conf 
+
+7. 将redis_init_script脚本拷贝到/etc/init.d/redisd 
+>cp /usr/redis/utils/redis_init_script /etc/init.d/redisd 
+
+8. 启动、关闭redis服务 
+>service redisd start  
+>service redisd stop  
+
+安装wildfly 
+------------ 
+
+1. 解压安装wildfly 
+>unzip  wildfly-10.0.0.Final.zip  -d  /usr/local/  
+>mv /usr/local  
+>mv wildfly-10.0.0.Final wildfly 
+
+2. 修改配置文件standalone.xml，将文件中的127.0.0.1替换成0.0.0.0 
+>vim /usr/local/wildfly/standalone/configuration/standalone.xml 
+
+3. 然后启动服务 
+>cd /wildfly/bin  
+>./standalone.sh
+
+
 
 
 
